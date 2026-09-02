@@ -17,13 +17,14 @@ impl TextProcessor for SimpleProcessor {
 }
 
 // 3. The Dynamic Decorator (Uses references or Boxes to dyn traits)
-struct RuntimeDecorator<'a> {
+struct UppercaseDecorator<'a> {
     wrapped: &'a dyn TextProcessor,
 }
 
-impl<'a> TextProcessor for RuntimeDecorator<'a> {
+impl<'a> TextProcessor for UppercaseDecorator<'a> {
     fn process(&self, text: &str) -> String {
-        format!("Decorated({})", self.wrapped.process(text))
+        // Enhance base behavior
+        self.wrapped.process(text).to_uppercase()
     }
 }
 
@@ -31,7 +32,7 @@ fn main() {
     let base = SimpleProcessor;
 
     // Wrapped dynamically at runtime using references
-    let dynamic_decorated = RuntimeDecorator { wrapped: &base };
+    let dynamic_decorated = UppercaseDecorator { wrapped: &base };
 
-    println!("{}", dynamic_decorated.process("hello")); // Outputs: Decorated(hello)
+    println!("{}", dynamic_decorated.process("hello")); // Outputs: HELLO
 }
