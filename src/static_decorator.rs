@@ -2,12 +2,18 @@
 // Because the wrapping happens at compile time, the compiler can inline the code, eliminating
 // runtime performance overhead and heap allocations.
 
-// 1. The Trait
+// ============ //
+// 1. The Trait //
+// ============ //
+
 trait TextProcessor {
     fn process(&self, text: &str) -> String;
 }
 
-// 2. The Base Component
+// ===================== //
+// 2. The Base Component //
+// ===================== //
+
 struct SimpleProcessor;
 
 impl TextProcessor for SimpleProcessor {
@@ -16,7 +22,10 @@ impl TextProcessor for SimpleProcessor {
     }
 }
 
-// 3. The Static Decorator (Uses Generic T)
+// ======================================== //
+// 3. The Static Decorator (Uses Generic T) //
+// ======================================== //
+
 struct UppercaseDecorator<T: TextProcessor> {
     wrapped: T,
 }
@@ -27,6 +36,10 @@ impl<T: TextProcessor> TextProcessor for UppercaseDecorator<T> {
         self.wrapped.process(text).to_uppercase()
     }
 }
+
+// ===== //
+// Usage //
+// ===== //
 
 fn main() {
     let base = SimpleProcessor;

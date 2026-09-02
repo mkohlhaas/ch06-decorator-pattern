@@ -2,12 +2,18 @@
 // layer only if a user ticks a checkbox), you must use Trait Objects (dyn Trait). This approach
 // introduces heap allocation and dynamic dispatch overhead.
 
-// 1. The Trait
+// ============ //
+// 1. The Trait //
+// ============ //
+
 trait TextProcessor {
     fn process(&self, text: &str) -> String;
 }
 
-// 2. The Base Component
+// ===================== //
+// 2. The Base Component //
+// ===================== //
+
 struct SimpleProcessor;
 
 impl TextProcessor for SimpleProcessor {
@@ -16,7 +22,10 @@ impl TextProcessor for SimpleProcessor {
     }
 }
 
-// 3. The Dynamic Decorator (Uses references or Boxes to dyn traits)
+// ================================================================= //
+// 3. The Dynamic Decorator (Uses references or Boxes to dyn traits) //
+// ================================================================= //
+
 struct UppercaseDecorator<'a> {
     wrapped: &'a dyn TextProcessor,
 }
@@ -27,6 +36,10 @@ impl<'a> TextProcessor for UppercaseDecorator<'a> {
         self.wrapped.process(text).to_uppercase()
     }
 }
+
+// ===== //
+// Usage //
+// ===== //
 
 fn main() {
     let base = SimpleProcessor;
