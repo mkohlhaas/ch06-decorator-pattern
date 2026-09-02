@@ -49,3 +49,15 @@ fn main() {
 
     println!("{}", decorated.process("hello rust!")); // Outputs: HELLO RUST!
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_uppercase_decorator() {
+        let base = SimpleProcessor;
+        let decorated = UppercaseDecorator { wrapped: &base };
+        assert_eq!(decorated.process("hello rust!"), "HELLO RUST!");
+    }
+}
