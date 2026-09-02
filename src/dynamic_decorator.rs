@@ -32,7 +32,7 @@ fn main() {
     let base = SimpleProcessor;
 
     // Wrapped dynamically at runtime using references
-    let dynamic_decorated = UppercaseDecorator { wrapped: &base };
+    let decorated = UppercaseDecorator { wrapped: &base };
 
-    println!("{}", dynamic_decorated.process("hello")); // Outputs: HELLO
+    println!("{}", decorated.process("hello rust!")); // Outputs: HELLO RUST!
 }
