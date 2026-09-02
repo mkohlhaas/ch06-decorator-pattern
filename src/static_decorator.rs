@@ -1,5 +1,4 @@
-// This is the most idiomatic Rust approach.
-// It relies on Generics and Trait Bounds.
+// This is the most idiomatic Rust approach. It relies on Generics and Trait Bounds.
 // Because the wrapping happens at compile time, the compiler can inline the code, eliminating
 // runtime performance overhead and heap allocations.
 
