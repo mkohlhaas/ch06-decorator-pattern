@@ -50,6 +50,10 @@ fn main() {
     println!("{}", decorated.process("hello rust!")); // Outputs: HELLO RUST!
 }
 
+// ===== //
+// Tests //
+// ===== //
+
 #[cfg(test)]
 mod tests {
     use super::*;
